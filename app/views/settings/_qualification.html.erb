@@ -1,0 +1,57 @@
+<div>
+    <h2>General</h2>
+    <div>
+        <span style="display: inline-block; min-width: 200px">Limit the query length</span>
+        <input value="<%= settings['maxlegth'] || '-1' %>" 
+            name="settings[maxlegth]">
+    </div>
+    <div>
+        <span style="display: inline-block; min-width: 200px">Tokenize the query</span>
+        <input <%= settings['tokenize'] ? 'checked' : '' %> 
+            name="settings[tokenize]"
+            type="checkbox">
+    </div>
+    <div>
+        <span style="display: inline-block; min-width: 200px">Prepend the title</span>
+        <input <%= settings['prepend_title'] ? 'checked' : '' %> 
+            name="settings[prepend_title]"
+            type="checkbox">
+    </div>
+    <div>
+        <span style="display: inline-block; min-width: 200px">Response path</span>
+        <input value="<%= settings['reponse_path'] || 'text' %>" 
+            name="settings[reponse_path]">
+    </div>
+
+    <h2>Projects</h2>
+    <p>Projects requiering auto qualification:</p>
+    <% for project in Project.all do %>
+        <div>
+            <span style="display: inline-block; min-width: 200px"><%= project.name %></span>
+            <input 
+                type="checkbox" 
+                <%= settings['projects'] && settings['projects'][project.id.to_s] ? 'checked' : '' %> 
+                name="settings[projects][<%= project.id %>]">
+        </div>
+    <% end %>
+    
+    <br>
+    <h2>Field mappings</h2>
+    <% for field in IssueCustomField.all do %>
+        <div>
+            <span style="display: inline-block; min-width: 200px"><%= field.name %></span>
+            <input value="<%= settings['customFieldsMappingUrl'] ? settings['customFieldsMappingUrl'][field.id.to_s] : "" %>" 
+                name="settings[customFieldsMappingUrl][<%= field.id %>]"
+                placeholder="url">
+        </div>
+    <% end %>
+
+    <% for field in ['tracker_id', 'project_id', 'subject', 'description', 'category_id', 'status_id', 'assigned_to_id', 'priority_id'] do %>
+        <div>
+            <span style="display: inline-block; min-width: 200px"><%= field %></span>
+            <input value="<%= settings['defaultFieldsMappingUrl'] ? settings['defaultFieldsMappingUrl'][field] : "" %>" 
+                name="settings[defaultFieldsMappingUrl][<%= field %>]"
+                placeholder="url">
+        </div>
+    <% end %>
+</div>
