@@ -22,18 +22,6 @@
         <input value="<%= settings['reponse_path'] || 'text' %>" 
             name="settings[reponse_path]">
     </div>
-
-    <h2>Projects</h2>
-    <p>Projects requiering auto qualification:</p>
-    <% for project in Project.all do %>
-        <div>
-            <span style="display: inline-block; min-width: 200px"><%= project.name %></span>
-            <input 
-                type="checkbox" 
-                <%= settings['projects'] && settings['projects'][project.id.to_s] ? 'checked' : '' %> 
-                name="settings[projects][<%= project.id %>]">
-        </div>
-    <% end %>
     
     <br>
     <h2>Field mappings</h2>
