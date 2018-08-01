@@ -3,11 +3,15 @@ require 'net/http'
 require 'json'
 
 class QualificationHooks < Redmine::Hook::ViewListener
-    #before_filter :controller_issues_new_before_save, :authorize, :only => :true
     
     def controller_issues_new_before_save(context)
 
-        return nil unless Project.find(context[:issue][:project_id]).enabled_module('auto qualification')
+        if !Project.find(context[:issue][:project_id]).enabled_module('auto qualification')
+            call_hook(:controller_issues_new_before_save_before_qualification, context)
+-           call_hook(:controller_issues_new_before_save_after_qualification, context)
+
+            return nil
+        end
         
         # format
         if Setting.plugin_qualification['prepend_title']
