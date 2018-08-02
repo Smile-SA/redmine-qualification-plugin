@@ -53,10 +53,10 @@ class QualificationHooks < Redmine::Hook::ViewListener
             Setting.plugin_qualification['defaultFieldsMappingUrl'].each do |field_name, url|
                 if !url.blank?
                     begin
+                        context[:issue][field_name] = cast_to_field_type(
+                            field_name,
+                            fetch_end_point(url, context[:text]))
                     rescue
-                    context[:issue][field_name] = cast_to_field_type(
-                        field_name,
-                        fetch_end_point(url, context[:text]))
                     end
                 end
             end
@@ -84,7 +84,7 @@ class QualificationHooks < Redmine::Hook::ViewListener
         response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https', :open_timeout => 2, :read_timeout => 2) do |http|
             http.request(request)
         end
-
+        
         deep_fetch_arr(JSON.parse(response.body), Setting.plugin_qualification['reponse_path'])
     end
 
