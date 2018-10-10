@@ -39,7 +39,8 @@ class QualificationHooks < Redmine::Hook::ViewListener
                     begin
                         custom_field_values[field_id] = cast_to_field_type(
                             field_id, 
-                            fetch_end_point(app_id, context[:text]))
+                            fetch_end_point(app_id, context[:text]),
+                            custom_field_values[field_id])
                     rescue
                     end
                 end
@@ -55,7 +56,8 @@ class QualificationHooks < Redmine::Hook::ViewListener
                     begin
                         context[:issue][field_name] = cast_to_field_type(
                             field_name,
-                            fetch_end_point(url, context[:text]))
+                            fetch_end_point(url, context[:text]),
+                            context[:issue][field_name])
                     rescue
                     end
                 end
@@ -66,13 +68,17 @@ class QualificationHooks < Redmine::Hook::ViewListener
     end
 
     # cast value to respect the type of the field
-    def cast_to_field_type(field, value)
-
-        case field
-        when 'tracker_id', 'project_id',  'category_id', 'status_id', 'assigned_to_id', 'priority_id'
-            return value.to_i
+    def cast_to_field_type(field, value, default)
+        
+        if value == "None"
+            return default
         else
-            return value
+            case field
+            when 'tracker_id', 'project_id',  'category_id', 'status_id', 'assigned_to_id', 'priority_id'
+                return value.to_i
+            else
+                return value
+            end
         end
     end
 
