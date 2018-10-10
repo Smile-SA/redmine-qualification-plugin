@@ -8,7 +8,7 @@ class QualificationHooks < Redmine::Hook::ViewListener
 
         if !Project.find(context[:issue][:project_id]).enabled_module('auto qualification')
             call_hook(:controller_issues_new_before_save_before_qualification, context)
--           call_hook(:controller_issues_new_before_save_after_qualification, context)
+            call_hook(:controller_issues_new_before_save_after_qualification, context)
 
             return nil
         end
