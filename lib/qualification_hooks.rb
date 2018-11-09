@@ -31,7 +31,8 @@ class QualificationHooks < Redmine::Hook::ViewListener
         call_hook(:controller_issues_new_before_save_before_qualification, context)
         
         # update custom fields
-        if Setting.plugin_qualification['customFieldsMappingUrl']
+        if Setting.plugin_qualification['customFieldsMappingUrl'] && context[:params][:issue][:custom_field_values]
+            
             custom_field_values = context[:params][:issue][:custom_field_values]
 
             Setting.plugin_qualification['customFieldsMappingUrl'].each do |field_id, app_id|

@@ -8,3 +8,7 @@ First working prototype
 
 - Fixed a typo in the code causing a crash
 - The plugin keeps the fields untouched when the endpoint fails to respond
+
+## 0.1.2
+
+- Fixed a crash when creating an issue within a project without custom fields
