@@ -5,13 +5,13 @@ require 'json'
 class QualificationHooks < Redmine::Hook::ViewListener
     
     def controller_issues_new_before_save(context)
-
         if !Project.find(context[:issue][:project_id]).enabled_module('auto qualification')
             call_hook(:controller_issues_new_before_save_before_qualification, context)
             call_hook(:controller_issues_new_before_save_after_qualification, context)
 
             return nil
         end
+        Rails.logger.info "Qualification plugin triggered"
         
         # format
         if Setting.plugin_qualification['prepend_title']
@@ -42,7 +42,8 @@ class QualificationHooks < Redmine::Hook::ViewListener
                             field_id, 
                             fetch_end_point(app_id, context[:text]),
                             custom_field_values[field_id])
-                    rescue
+                    rescue Exception => e
+                        Rails.logger.error "QUALIFICATION_PLUGIN ERROR: #{e}"
                     end
                 end
             end
@@ -59,7 +60,8 @@ class QualificationHooks < Redmine::Hook::ViewListener
                             field_name,
                             fetch_end_point(url, context[:text]),
                             context[:issue][field_name])
-                    rescue
+                    rescue Exception => e
+                        Rails.logger.error "QUALIFICATION_PLUGIN ERROR: #{e}"
                     end
                 end
             end
@@ -85,7 +87,7 @@ class QualificationHooks < Redmine::Hook::ViewListener
 
     def fetch_end_point(url, text)
 
-        uri = URI(url + text)
+        uri = URI.parse(URI.encode(url + text))
         request = Net::HTTP::Get.new(uri)
 
         response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https', :open_timeout => 2, :read_timeout => 2) do |http|
