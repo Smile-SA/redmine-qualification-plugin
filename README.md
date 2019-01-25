@@ -22,6 +22,7 @@ You can find how to run this example in the [extra folder](extra/README.md).
   - "Response path" if the end point returns {"a": {"b": "value"}} specify a.b
   - Check the projects for which the plugin will be activated
   - Map the fields you want to predict to http endpoints
+  - Advanced: optional tracker_id regex mapper: Each regex mapper box correspond to a number sent by the tracker_id service. If you fill the first box with "demande" when the service answer with "0" the tracker named /demande/ will be selected.
 
 ## Endpoint requirements
 
