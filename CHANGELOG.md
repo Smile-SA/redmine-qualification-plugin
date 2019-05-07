@@ -12,3 +12,7 @@ First working prototype
 ## 0.1.2
 
 - Fixed a crash when creating an issue within a project without custom fields
+
+## 0.1.3-oraw
+
+- Simplified version compatible with OpenReq modules

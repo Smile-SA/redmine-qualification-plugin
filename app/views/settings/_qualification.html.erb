@@ -1,29 +1,4 @@
 <div>
-    <h2>General</h2>
-    <div>
-        <span style="display: inline-block; min-width: 200px">Limit the query length</span>
-        <input value="<%= settings['maxlegth'] || '-1' %>" 
-            name="settings[maxlegth]">
-    </div>
-    <div>
-        <span style="display: inline-block; min-width: 200px">Tokenize the query</span>
-        <input <%= settings['tokenize'] ? 'checked' : '' %> 
-            name="settings[tokenize]"
-            type="checkbox">
-    </div>
-    <div>
-        <span style="display: inline-block; min-width: 200px">Prepend the title</span>
-        <input <%= settings['prepend_title'] ? 'checked' : '' %> 
-            name="settings[prepend_title]"
-            type="checkbox">
-    </div>
-    <div>
-        <span style="display: inline-block; min-width: 200px">Response path</span>
-        <input value="<%= settings['reponse_path'] || 'text' %>" 
-            name="settings[reponse_path]">
-    </div>
-    
-    <br>
     <h2>Field mappings</h2>
     <% for field in IssueCustomField.all do %>
         <div>
@@ -31,37 +6,6 @@
             <input value="<%= settings['customFieldsMappingUrl'] ? settings['customFieldsMappingUrl'][field.id.to_s] : "" %>" 
                 name="settings[customFieldsMappingUrl][<%= field.id %>]"
                 placeholder="url">
-        </div>
-    <% end %>
-
-    <% for field in ['tracker_id', 'project_id', 'subject', 'description', 'category_id', 'status_id', 'assigned_to_id', 'priority_id'] %>
-        <div>
-            <span style="display: inline-block; min-width: 200px"><%= field %></span>
-            <input value="<%= settings['defaultFieldsMappingUrl'] ? settings['defaultFieldsMappingUrl'][field] : "" %>" 
-                name="settings[defaultFieldsMappingUrl][<%= field %>]"
-                placeholder="url">
-            <% if field == 'tracker_id' %>
-                <div>
-                    <% for val in (settings['tracker_id_helper'] || []) %>
-                        <input 
-                            value="<%= val %>"
-                            name="settings[tracker_id_helper][]"
-                            placeholder="regex mapper=>README">
-                    <% end %>
-                    <input 
-                        value="" 
-                        name="settings[tracker_id_helper][]" 
-                        placeholder="regex mapper=>README">
-                    <input 
-                        onclick="this.insertAdjacentElement('beforebegin', this.previousElementSibling.cloneNode());this.previousElementSibling.value=''"
-                        type="button"
-                        value="add rule">
-                    <input 
-                        onclick="this.parentNode.childElementCount <= 3 ? this.previousElementSibling.previousElementSibling.value = '': this.previousElementSibling.previousElementSibling.remove()"
-                        type="button"
-                        value="remove rule">
-                </div>
-            <% end %>
         </div>
     <% end %>
 </div>
