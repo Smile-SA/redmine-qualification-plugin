@@ -1,7 +1,6 @@
 # Redmine qualification plugin
 
 Redmine plugin to automatically fill Redmine issue fields by fetching endpoints.
-This version is a fork for the OpenReq project.
 
 ## Installation
 
@@ -16,6 +15,6 @@ This version is a fork for the OpenReq project.
 
 ## Endpoint requirements
 
-The plugin currently supports GET HTTP request only. The plugin appends to the endpoint the user query which corresponds to "?t=issue_title&b=issue_description".
+The plugin currently supports GET HTTP request only. The plugin appends to the endpoint the user query: "?t=issue_title&b=issue_description".
 
-The endpoint must return a JSON response which returns an object with the following structure `{ topScoringIntent: { intent: value } }`.
+The endpoint must return a JSON response.

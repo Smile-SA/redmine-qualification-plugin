@@ -16,3 +16,7 @@ First working prototype
 ## 0.1.3-oraw
 
 - Simplified version compatible with OpenReq modules
+
+## 0.1.4
+
+- Breaking endpoint requirement change and code cleanup.
