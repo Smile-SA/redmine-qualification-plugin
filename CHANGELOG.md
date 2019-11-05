@@ -19,4 +19,8 @@ First working prototype
 
 ## 0.1.4
 
-- Breaking endpoint requirement change and code cleanup.
+- Breaking endpoint requirement change and code cleanup
+
+## 0.1.5
+
+- Removed type custom field requirement

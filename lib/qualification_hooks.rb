@@ -20,22 +20,15 @@ class QualificationHooks < Redmine::Hook::ViewListener
         custom_field_values = context[:params][:issue][:custom_field_values]
 
         if mapping && custom_field_values
-            begin
-                type_field_id = (IssueCustomField.find { |f| f.name == 'type' }).id
-                type = fetch(mapping[type_field_id.to_s] + '?t=' + subject + '&b=' + description)
-                
-                mapping.each do |field_id, app_id|
-                    if !app_id.blank?
-                        begin
-                            data = '?t=' + subject + '&b=' + description + '&type=' + type
-                            custom_field_values[field_id] = fetch(app_id + data)
-                        rescue Exception => e
-                            Rails.logger.error "QUALIFICATION_PLUGIN ERROR 1: #{e}"
-                        end
+            mapping.each do |field_id, app_id|
+                if !app_id.blank?
+                    begin
+                        data = '?t=' + subject + '&b=' + description
+                        custom_field_values[field_id] = fetch(app_id + data)
+                    rescue Exception => e
+                        Rails.logger.error "QUALIFICATION_PLUGIN ERROR 1: #{e}"
                     end
                 end
-            rescue Exception => e
-                Rails.logger.error "QUALIFICATION_PLUGIN ERROR 2: #{e}"
             end
 
             context[:issue].custom_field_values = custom_field_values
