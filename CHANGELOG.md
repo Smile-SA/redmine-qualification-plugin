@@ -24,3 +24,8 @@ First working prototype
 ## 0.1.5
 
 - Removed type custom field requirement
+
+## 0.2.0
+
+- New fully featured service configuration
+- Per project service enabling

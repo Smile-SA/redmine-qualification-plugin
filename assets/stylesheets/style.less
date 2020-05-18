@@ -1,0 +1,50 @@
+.qualification-config {
+    div.card {
+        padding: 2%;
+        margin: 2%;
+        border: solid black 1px;
+    }
+    
+    .flex {
+        display: flex;
+    }
+    
+    .row {
+        flex-direction: row;
+    }
+    
+    .no-wrap {
+        flex-wrap: nowrap;
+    }
+    
+    .column {
+        flex-direction: column;
+    }
+    
+    input {
+        width: 100%;
+
+        &[type=button] {
+            width: max-content;
+        }
+    }
+    
+    div#body {
+        display: none;
+
+        &[data-method='post'] {
+            display: flex;
+        }
+    }
+    
+    label {
+        margin-left: initial !important;
+        margin-right: 2%;
+        max-width: max-content;
+        line-height: 25px;
+    }
+
+    select {
+        width: max-content;
+    }
+}

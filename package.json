@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
+    "less": "^3.11.1"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "yarn build-js && yarn build-css",
+    "build-js": "babel assets/javascripts/index.tsx -o assets/javascripts/index.js",
+    "build-css": "lessc assets/stylesheets/style.less assets/stylesheets/style.css"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-react-jsx"
+    ]
+  }
+}

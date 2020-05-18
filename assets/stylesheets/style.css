@@ -1,0 +1,38 @@
+.qualification-config div.card {
+  padding: 2%;
+  margin: 2%;
+  border: solid black 1px;
+}
+.qualification-config .flex {
+  display: flex;
+}
+.qualification-config .row {
+  flex-direction: row;
+}
+.qualification-config .no-wrap {
+  flex-wrap: nowrap;
+}
+.qualification-config .column {
+  flex-direction: column;
+}
+.qualification-config input {
+  width: 100%;
+}
+.qualification-config input[type=button] {
+  width: max-content;
+}
+.qualification-config div#body {
+  display: none;
+}
+.qualification-config div#body[data-method='post'] {
+  display: flex;
+}
+.qualification-config label {
+  margin-left: initial !important;
+  margin-right: 2%;
+  max-width: max-content;
+  line-height: 25px;
+}
+.qualification-config select {
+  width: max-content;
+}

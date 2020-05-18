@@ -1,0 +1,18 @@
+<h1>Enabled services</h1>
+<%= form_tag({ :action => 'enable', :controller => 'qualification' }, :method => :post) do %>
+    <input type="hidden" name="project" value="<%= @project %>">
+    <div style="padding: 2%; margin: 2%; border: solid black 1px;">
+        <% Setting.plugin_qualification.each do | id, service | %>
+        <div>
+            <label>
+            <input
+                type="checkbox"
+                name="enabled[<%= id %>]"
+                <%= !(service["disabled_projects"] || {})[@project.name] ? 'checked' : '' %>>
+                <%= service['name'] %>
+            </label>
+        </div>
+        <% end %>
+    </div>
+    <%= submit_tag l(:button_save) %>
+<% end %>

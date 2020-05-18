@@ -1,11 +1,11 @@
-<div>
-    <h2>Field mappings</h2>
-    <% for field in IssueCustomField.all do %>
-        <div>
-            <span style="display: inline-block; min-width: 200px"><%= field.name %></span>
-            <input value="<%= settings['customFieldsMappingUrl'] ? settings['customFieldsMappingUrl'][field.id.to_s] : "" %>" 
-                name="settings[customFieldsMappingUrl][<%= field.id %>]"
-                placeholder="url">
-        </div>
-    <% end %>
-</div>
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'style', :plugin => 'qualification' %>
+    <%= javascript_include_tag 'no-react', :plugin => 'qualification' %>
+    <script>
+        const settings = <%= settings.to_json.html_safe %>;
+        const custom_fields = <%= IssueCustomField.all.to_json.html_safe %>;
+    </script>
+    <%= javascript_include_tag 'index', :plugin => 'qualification' %>
+<% end %>
+
+<div id="qualification" class="qualification-config"></div>
