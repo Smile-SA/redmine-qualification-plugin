@@ -29,3 +29,7 @@ First working prototype
 
 - New fully featured service configuration
 - Per project service enabling
+
+## 0.2.1
+
+- Configuration variables simplified

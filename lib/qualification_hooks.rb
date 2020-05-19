@@ -82,7 +82,17 @@ class QualificationHooks < Redmine::Hook::ViewListener
         contextPaths = matches.map { |s| s[2, s.length-4].split('.').map { |s| s.to_sym } }
 
         matches.zip(contextPaths).each do |match, path|
-            value = dig(context.dup.rehash, *path)
+            # value = dig(context.dup.rehash, *path)
+
+            if path[0] === :custom
+                custom_field = IssueCustomField.find_by_name(path[1])
+                Rails.logger.info context[:params][:issue][:custom_field_values]
+                value = context[:params][:issue][:custom_field_values][custom_field.id.to_s]
+                
+            else
+                value = dig(context.dup.rehash, :params, :issue, path[0])
+            end
+
             text.gsub!(match, value)
         end
 

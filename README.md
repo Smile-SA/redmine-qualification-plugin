@@ -24,7 +24,7 @@ First, heads to the project configuration page (/settings/plugin/qualification).
 - Headers can also be added by clicking on the header dropdown and should follow the syntax key=value
 - The target custom field his the custom field in which the result of the request will be saved
 
-It is possible to insert variables inside the url and body to gather information on the issue. To insert a variable you should put his path inside dooble brackets. The variables accessible correspond to the object "context" of redmine "controller_issues_new_before_save" hook. For example, {{issue.subject}} will be replaced with the issue subject. Previously set custom field can also be reused ex: {{params.issue.custom_field_values.1}}.
+It is possible to insert variables inside the url and body to gather information on the issue. To insert a variable you should put his name inside double brackets. The accessible variables are the default issue fields (ex: {{subject}}) and the custom fields with the prefix "custom." (ex: {{custom.custom_field_name}}).
 
 Here is a full example:
 

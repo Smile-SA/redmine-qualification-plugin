@@ -6,7 +6,7 @@ Redmine::Plugin.register :qualification do
     name 'Qualification plugin'
     author 'Damien GILLES'
     description 'Set issue fields by fetching a remote end point'
-    version '0.2.0'
+    version '0.2.1'
     settings partial: 'settings/qualification', default: {}
     project_module 'auto qualification' do
         permission :qualification, :public => true
