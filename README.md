@@ -36,6 +36,14 @@ This plugin can be enabled or disabled project wide has a redmine module (from t
 
 For each project specific services can be toggled, on the project's setting page click the tab "qualification" and only check the services you want to be called upon issue creation.
 
+![config example 3](doc/config_ex3.PNG)
+
+## Usage
+
+On issue creation, assuming that a service is configured, that the project has the auto qualification module enabled and that a service is enabled in the setting/qualification tab, the custom fields will be overriden by the services response.
+
+If nothing happen, double check that the endpoints are correctly registred and return a 200 when fetch from the redmine host, [postman-echo](http://postman-echo.com/) can help you test your configuration.
+
 ## Build
 
 For development purpose you may have to build the tsx and less sources.
