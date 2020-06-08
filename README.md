@@ -2,6 +2,8 @@
 
 Redmine plugin to automatically fill Redmine issue fields by fetching endpoints.
 
+![demo](doc/demo.gif)
+
 ## Installation
 
 - Clone or download this repository into your Redmine's plugins folder
