@@ -33,3 +33,7 @@ First working prototype
 ## 0.2.1
 
 - Configuration variables simplified
+
+## 0.2.2
+
+- Integrated Advise Plugin 

@@ -2,7 +2,7 @@
 
 Redmine plugin to automatically fill Redmine issue fields by fetching endpoints.
 
-![demo](doc/demo.gif)
+![demo](doc/newdemo.gif)
 
 ## Installation
 
@@ -18,7 +18,7 @@ Redmine plugin to automatically fill Redmine issue fields by fetching endpoints.
 You must register the list of services wich may be called upon issue creation.
 First, heads to the project configuration page (/settings/plugin/qualification).
 
-![config example](doc/config_ex1.PNG)
+![default config](doc/config_empty.PNG)
 
 - The service name will be displayed in the project configuration page
 - The method and the url should match an existing endpoint
@@ -30,7 +30,7 @@ It is possible to insert variables inside the url and body to gather information
 
 Here is a full example:
 
-![config example 2](doc/config_ex2.PNG)
+![config overview](doc/config_overview.PNG)
 
 ### Enabling auto qualification
 
@@ -38,7 +38,7 @@ This plugin can be enabled or disabled project wide has a redmine module (from t
 
 For each project specific services can be toggled, on the project's setting page click the tab "qualification" and only check the services you want to be called upon issue creation.
 
-![config example 3](doc/config_ex3.PNG)
+![service enabled](doc/enabled_service.PNG)
 
 ## Usage
 
