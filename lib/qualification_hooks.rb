@@ -39,8 +39,12 @@ class QualificationHooks < Redmine::Hook::ViewListener
                                 
                 if(response["closest"])
                     updated_response=JSON.parse(response)
-                    notes = "<p>"+ "<br>"+"-- Redmine Advise -- "+"<br>" + " Ticket le plus ressemblant: "+"<br>" +"id | autheur | commun% | date | titre "+"<br>" + adviseDetails(updated_response["closest"]) 
-                            + " Tickets les proches du même projet:"+"<br>" + "id | autheur | commun% | date | titre "+"<br>" + (updated_response["project_closests"].map {|x| adviseDetails(x)}).join("")+"</p>"
+                    notes = "<p>"+ "<br>"+"-- Redmine Advise -- "+"<br>"
+                    notes << " Ticket le plus ressemblant: "+"<br>"
+                    notes << "id | autheur | commun% | date | titre "+"<br>"
+                    notes << " Tickets les proches du même projet:"+"<br>"
+                    notes << "id | autheur | commun% | date | titre "+"<br>"
+                    notes << (updated_response["project_closests"].map {|x| adviseDetails(x)}).join("")+"</p>"
                     custom_field_values[service["target_field"]] = notes
                     
                 end
