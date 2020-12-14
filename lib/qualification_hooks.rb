@@ -39,13 +39,13 @@ class QualificationHooks < Redmine::Hook::ViewListener
                                 
                 if(response["closest"])
                     updated_response=JSON.parse(response)
-                    notes = "-- Redmine Advise -- <br>"
-                    notes << "<br> Ticket le plus ressemblant: <br>"
-                    notes << "id | autheur | commun% | date | titre  <br>"
+                    notes = "<p>"+ "<br>"+"-- Redmine Advise -- "+"<br>"
+                    notes << " Ticket le plus ressemblant: "+"<br>"
+                    notes << "id | autheur | commun% | date | titre "+"<br>"
                     notes << adviseDetails(updated_response["closest"])
-                    notes << "<br> Tickets les proches du même projet: <br>"
-                    notes << "id | autheur | commun% | date | titre <br>"
-                    notes << (updated_response["project_closests"].map {|x| adviseDetails(x)}).join("")
+                    notes << " Tickets les proches du même projet:"+"<br>"
+                    notes << "id | autheur | commun% | date | titre "+"<br>"
+                    notes << (updated_response["project_closests"].map {|x| adviseDetails(x)}).join("")+"</p>"
                     custom_field_values[service["target_field"]] = notes
                     
                 end
@@ -142,7 +142,7 @@ class QualificationHooks < Redmine::Hook::ViewListener
             correlation = (100 * (1 - advise["distance"])).round
             username = User.find(ticket[:author_id]).to_s || 'anonymous'
         
-            return "#" + advise["id"].to_s + "  | " + username + " | " + correlation.to_s + " | " + ticket[:start_date].to_s + " | " + ticket[:subject].to_s + " <br>"
+            return "#" + advise["id"].to_s + "  | " + username + " | " + correlation.to_s + " | " + ticket[:start_date].to_s + " | " + ticket[:subject].to_s + "<br>"
         rescue
             Rails.logger.error "ADVISE_PLUGIN WARN: could'nt find issue ##{advise["id"].to_s}"
             return ""
