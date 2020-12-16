@@ -39,7 +39,7 @@ class QualificationHooks < Redmine::Hook::ViewListener
                                 
                 if(response["closest"])
                     updated_response=JSON.parse(response)
-                    notes = "<p>"+ "<br>"+"-- Redmine Advise -- "+"<br>"
+                    notes = "<p> "+ "<br>"+"-- Redmine Advise -- "+"<br>"
                     notes << " Ticket le plus ressemblant: "+"<br>"
                     notes << "id | autheur | commun% | date | titre "+"<br>"
                     notes << " Tickets les proches du même projet:"+"<br>"
