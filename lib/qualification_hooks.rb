@@ -45,7 +45,7 @@ class QualificationHooks < Redmine::Hook::ViewListener
                     notes << adviseDetails(updated_response["closest"])+" <br>"
                     notes << " Tickets les proches du même projet:"+"<br>"
                     notes << "id | autheur | commun% | date | titre "+"<br>"
-                    notes << (updated_response["project_closests"].map {|x| adviseDetails(x)}).join("")+"</p>"
+                    notes << (updated_response["project_closests"].map {|x| adviseDetails(x)}).join("")+" </p>"
                     custom_field_values[service["target_field"]] = notes
                     
                 end
